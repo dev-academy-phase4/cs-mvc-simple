@@ -3,9 +3,11 @@ using System.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Twitter;
 using Owin;
 using SimpleDemo.Models;
 
@@ -52,9 +54,13 @@ namespace SimpleDemo
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(new TwitterAuthenticationOptions()
+            {
+                ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
+                ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
+                CallbackPath = new PathString(ConfigurationManager.AppSettings["TwitterRedirectUri"]),
+                BackchannelCertificateValidator = null
+            });
 
             app.UseFacebookAuthentication(new FacebookAuthenticationOptions()
             {
