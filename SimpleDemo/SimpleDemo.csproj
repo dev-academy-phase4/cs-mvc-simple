@@ -252,6 +252,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Secrets.config" />
+    <Content Include="SampleSecrets.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
